@@ -8,7 +8,7 @@ cd data-ai-service
 ```
 Скопировать входные файлы в banking-rec-system/data-ai-service/data_input
 
-## Запуск Pyton
+## Запуск Python
 
 ```bash
 cd data-ai-service
@@ -35,5 +35,6 @@ docker-compose up --build
 # Результаты будут в data_output:
 # - recommendations_final.csv
 # - recommendations_full_analysis.csv
+
 
 
