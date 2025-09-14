@@ -37,8 +37,3 @@ docker-compose up --build
 # - recommendations_full_analysis.csv
 
 
-
-# - recommendations_final.csv
-# - recommendations_full_analysis.csv
-
-Хочешь, я ещё добавлю в начало небольшой блок с **структурой проекта (директории)**, чтобы жюри сразу понимали, куда кидать файлы?
