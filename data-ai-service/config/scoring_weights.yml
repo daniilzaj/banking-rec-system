@@ -1,0 +1,4 @@
+# Веса для формулы рекомендаций. Сумма должна быть равна 1.0
+benefit_weight: 0.5
+propensity_weight: 0.3
+counterfactual_weight: 0.2

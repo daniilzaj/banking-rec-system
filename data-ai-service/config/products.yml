@@ -1,0 +1,96 @@
+products:
+  # --- КЕШБЭК-ПРОДУКТЫ ---
+  - name: Карта для путешествий
+    benefit_type: cashback
+    category_weight: 1.2 # Поощряем, так как это активный продукт
+    rate: 0.04
+    categories:
+      - Путешествия
+      - Такси
+      - Поезда
+      - Авиабилеты
+      - Отели
+      - Аренда авто
+    cashback_limit_monthly: 20000
+
+  - name: Премиальная карта
+    benefit_type: cashback
+    category_weight: 1.15 # Также поощряем, но чуть меньше тревел-карты
+    tiered_rates:
+      - { threshold: 6000000, rate: 0.04 }
+      - { threshold: 1000000, rate: 0.03 }
+      - { threshold: 0, rate: 0.02 }
+    special_rate: 0.04
+    special_categories:
+      - Ювелирные изделия
+      - Парфюмерия
+      - Рестораны
+    cashback_limit_monthly: 100000
+    free_withdrawal_limit: 3000000 
+    assumed_withdrawal_fee_rate: 0.01 
+
+  - name: Кредитная карта
+    benefit_type: cashback
+    category_weight: 1.2
+    top_n_categories: 3
+    top_category_rate: 0.10
+    online_rate: 0.10
+    online_categories:
+      - Игры
+      - Доставка
+      - Кино
+      - Онлайн-сервисы
+    cashback_limit_monthly: 15000
+
+  # --- СЕРВИСНЫЕ ПРОДУКТЫ ---
+  - name: Обмен валют
+    benefit_type: saved_fees
+    category_weight: 1.0 # Нейтральный вес
+    saved_fee_per_op: 1500 
+    min_fx_ops_monthly: 1 # Смягчаем условие до 1 операции
+
+  - name: Кредит наличными
+    benefit_type: loan_offer
+    category_weight: 1.1 # Важный для бизнеса продукт
+    signals:
+      - large_one_off_purchase
+      - regular_loan-like_payments
+    rate_1_year: 0.12
+    rate_over_1_year: 0.21
+
+  # --- ДЕПОЗИТЫ ---
+  - name: Депозит Мультивалютный
+    benefit_type: interest
+    category_weight: 0.85 # Слегка ослабляем, чтобы не доминировал
+    interest_rate: 0.145
+    can_replenish: true
+    can_withdraw: true
+
+  - name: Депозит Сберегательный
+    benefit_type: interest
+    category_weight: 0.8 # Самый "негибкий" депозит, ослабляем чуть сильнее
+    interest_rate: 0.165
+    can_replenish: false
+    can_withdraw: false
+
+  - name: Депозит Накопительный
+    benefit_type: interest
+    category_weight: 0.85 # Слегка ослабляем
+    interest_rate: 0.155
+    can_replenish: true
+    can_withdraw: false
+
+  # --- ИНВЕСТИЦИОННЫЕ ПРОДУКТЫ ---
+  - name: Инвестиции
+    benefit_type: investment_offer
+    category_weight: 1.1 # Поощряем пробу новых продуктов
+    signals:
+      - high_idle_balance 
+      - no_active_deposits
+    
+  - name: Золотые слитки
+    benefit_type: asset_offer
+    category_weight: 0.9 # Очень нишевый продукт, не пушим его активно
+    signals:
+      - premium_status
+      - large_deposits_total

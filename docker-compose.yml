@@ -1,0 +1,56 @@
+# Use a modern version of the Docker Compose syntax
+version: '3.8'
+
+# This is the main block where all our services (containers) are defined
+services:
+  
+  #----------------------------------------------------
+  # ANALYTICAL SERVICE (PYTHON)
+  # This service runs, generates the CSV, and stops.
+  #----------------------------------------------------
+  data-ai-service:
+    # Tells Docker Compose to build this image from a Dockerfile
+    build:
+      # The context is the path to the service's directory
+      context: ./data-ai-service
+      dockerfile: Dockerfile
+    
+    # A clean, readable name for the container when it runs
+    container_name: recsys_ai_service
+    
+    # This is the most important part for getting our results.
+    # It links a folder on your computer to a folder inside the container.
+    volumes:
+      # FORMAT: [folder_on_your_computer]:[folder_inside_the_container]
+      # This ensures that when the script saves files to /app/data_output
+      # inside the container, they instantly appear in the data_output
+      # folder on your machine.
+      - ./data-ai-service/data_output:/app/data_output
+
+  #----------------------------------------------------
+  # FUTURE SERVICES (placeholders for expansion)
+  # When you're ready to build the Go services,
+  # you'll uncomment and configure these blocks.
+  #----------------------------------------------------
+  #
+  # users-service:
+  #   build: ./users-service
+  #   container_name: recsys_users_service_go
+  #   restart: always
+  #   ports:
+  #     - "8081:8080"
+  #   depends_on:
+  #     - db
+  #
+  # db:
+  #   image: postgres:15-alpine
+  #   container_name: recsys_db
+  #   restart: always
+  #   environment:
+  #     - POSTGRES_USER=user
+  #     - POSTGRES_PASSWORD=password
+  #     - POSTGRES_DB=recsys
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - ./postgres_data:/var/lib/postgresql/data
