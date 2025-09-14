@@ -1,5 +1,5 @@
 # --- Этап 1: Базовый образ ---
-FROM python:3.9-slim
+FROM python:3.13-slim-bullseye
 
 # --- Этап 2: Установка рабочей директории ---
 WORKDIR /app
